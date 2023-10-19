@@ -38,14 +38,6 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Microsoft.Azure.WebJobs.Extensions": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "Microsoft.Azure.WebJobs.Extensions.Http": {
-              "target": "Package",
-              "version": "[3.2.0, )"
-            },
             "Microsoft.Extensions.Http": {
               "target": "Package",
               "version": "[7.0.0, )"

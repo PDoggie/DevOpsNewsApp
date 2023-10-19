@@ -1,25 +1,31 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using DevOpsNewsApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+app.Map("/", async context =>
 {
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+    var newsService = context.RequestServices.GetRequiredService<NewsService>();
+    var news = await newsService.GetDevOpsNewsAsync();
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+    await context.Response.WriteAsync("<html><body>");
+    await context.Response.WriteAsync("<h1>DevOps News</h1>");
+    await context.Response.WriteAsync("<ul>");
 
-app.UseRouting();
+    foreach (var story in news)
+    {
+        await context.Response.WriteAsync($"<li><a href='{story.Url}'>{story.Title}</a><br>{story.Description}</li>");
+    }
 
-app.UseAuthorization();
+    await context.Response.WriteAsync("</ul>");
+    await context.Response.WriteAsync("</body></html>");
+});
 
-app.MapRazorPages();
+builder.Services.AddSingleton<NewsService>();
+builder.Services.AddHttpClient();
 
 app.Run();

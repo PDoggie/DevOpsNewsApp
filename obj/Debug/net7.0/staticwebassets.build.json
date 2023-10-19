@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "2cYelsrdsuYWSiCfXTmDhxvYO+n1cQ719VBBPulX2SQ=",
+  "Source": "DevOpsNewsApp",
+  "BasePath": "_content/DevOpsNewsApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
