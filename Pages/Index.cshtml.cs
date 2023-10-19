@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 public class IndexModel : PageModel
 {
     private readonly IHttpClientFactory _clientFactory;
-    public IEnumerable<string> News { get; private set; }
+    public IEnumerable<string>? News { get; private set; }
 
     public IndexModel(IHttpClientFactory clientFactory)
     {
